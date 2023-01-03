@@ -1,0 +1,10 @@
+BrandID:1;ModelID:1;OperatingSystemID:1;ScreenSize:15.6;ScreenResolutionX:1920;ScreenResolutionY:1080;CPUFrequency:3.2;CoresNumber:8;RAMCapacity:16;DiskCapacity:1024;ColorID:1;Price:180200
+BrandID:1;ModelID:2;OperatingSystemID:1;ScreenSize:15.6;ScreenResolutionX:1920;ScreenResolutionY:1080;CPUFrequency:2.1;CoresNumber:2;RAMCapacity:4;DiskCapacity:256;ColorID:1;Price:62660
+BrandID:1;ModelID:3;OperatingSystemID:4;ScreenSize:15.6;ScreenResolutionX:1920;ScreenResolutionY:1080;CPUFrequency:1.1;CoresNumber:2;RAMCapacity:4;DiskCapacity:128;ColorID:1;Price:26390
+BrandID:2;ModelID:4;OperatingSystemID:4;ScreenSize:15.6;ScreenResolutionX:1920;ScreenResolutionY:1080;CPUFrequency:2.4;CoresNumber:4;RAMCapacity:8;DiskCapacity:256;ColorID:3;Price:65930
+BrandID:3;ModelID:5;OperatingSystemID:3;ScreenSize:16.2;ScreenResolutionX:3456;ScreenResolutionY:2234;CPUFrequency:0;CoresNumber:10;RAMCapacity:64;DiskCapacity:512;ColorID:4;Price:449990
+BrandID:3;ModelID:6;OperatingSystemID:3;ScreenSize:13.3;ScreenResolutionX:2560;ScreenResolutionY:1600;CPUFrequency:3.2;CoresNumber:8;RAMCapacity:8;DiskCapacity:256;ColorID:3;Price:94990
+BrandID:4;ModelID:7;OperatingSystemID:1;ScreenSize:15.6;ScreenResolutionX:0;ScreenResolutionY:0;CPUFrequency:1.6;CoresNumber:4;RAMCapacity:8;DiskCapacity:256;ColorID:0;Price:98210
+BrandID:4;ModelID:8;OperatingSystemID:4;ScreenSize:14;ScreenResolutionX:1920;ScreenResolutionY:1080;CPUFrequency:2.4;CoresNumber:4;RAMCapacity:8;DiskCapacity:256;ColorID:0;Price:88900
+BrandID:5;ModelID:9;OperatingSystemID:1;ScreenSize:15.6;ScreenResolutionX:3840;ScreenResolutionY:2160;CPUFrequency:2.3;CoresNumber:8;RAMCapacity:32;DiskCapacity:1024;ColorID:0;Price:333930
+BrandID:5;ModelID:10;OperatingSystemID:1;ScreenSize:14;ScreenResolutionX:1920;ScreenResolutionY:1200;CPUFrequency:3.2;CoresNumber:8;RAMCapacity:16;DiskCapacity:512;ColorID:4;Price:169990
