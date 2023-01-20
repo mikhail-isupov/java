@@ -2,13 +2,13 @@
  * класс для описания Крестьянина
  */
 public class Peasant extends BaseHero {
-    static final String initHeroType = "Крестьянин";
-    static final byte initAttack = 1;
-    static final byte initDefence = 1;
-    static final byte initHealth = 1;
-    static final byte initSpeed = 3;
-    static final byte initDamage = 1;
-    static final byte initDelivery = 1;
+    static final String HEROTYPE = "Крестьянин";
+    static final byte ATTACK = 1;
+    static final byte DEFENCE = 1;
+    static final byte HEALTH = 1;
+    static final byte SPEED = 3;
+    static final byte DAMAGE = 1;
+    static final byte DELIVERY = 1;
     
     private byte delivery;
 
@@ -17,10 +17,16 @@ public class Peasant extends BaseHero {
         this.delivery = delivery;
     }
     public Peasant(String name){
-        this(initHeroType, name, initAttack, initDefence, initHealth, initSpeed, initDamage, initDelivery);
+        this(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, DAMAGE, DELIVERY);
     }
     @Override
     public String toString(){
         return super.toString() + ", Доставка: " + this.delivery;
+    }
+    @Override
+    public byte[] getInfo(){
+        byte[] info = super.getInfo();
+        info[info.length - 1] = this.delivery;// Индивидуальный параметр кладется в зарезервированный элемент
+        return info;
     }
 }
