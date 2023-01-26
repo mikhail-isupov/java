@@ -1,4 +1,7 @@
 package units;
+
+import java.util.List;
+
 /**
  * класс для описания арбалетчика
  */
@@ -11,7 +14,7 @@ public class Crossbowman extends Shooter {
     static final byte MINDAMAGE = 2;
     static final byte MAXDAMAGE = 3;
     static final byte SHOTS = 16;
-    public Crossbowman(String name){
-        super(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE, SHOTS);
+    public Crossbowman(List<BaseHero> comrades, Position position){
+        super(comrades, HEROTYPE, position, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE, SHOTS);
     }
 }

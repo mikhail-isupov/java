@@ -1,4 +1,7 @@
 package units;
+
+import java.util.List;
+
 /*
  * Класс для описания монаха
  */
@@ -10,7 +13,7 @@ public class Monk extends Supernatural{
     static final byte SPEED = 5;
     static final byte DAMAGE = -4;
     static final byte MAGIC = 1;
-    public Monk(String name){
-        super(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, DAMAGE, MAGIC);
+    public Monk(List<BaseHero> comrades, Position position){
+        super(comrades, HEROTYPE, position, ATTACK, DEFENCE, HEALTH, SPEED, DAMAGE, MAGIC);
     }
 }

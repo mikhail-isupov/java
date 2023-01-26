@@ -2,11 +2,13 @@ package units;
 import java.util.List;
 
 public interface GameMethods {
+    List<BaseHero> getComrades();
+    Position getPosition();
+    void setPosition(Position position);
+    String getHeroType();
     byte[] getInfo();
     int getHealth();
-    String getHeroType();
-    String getHeroName();
-    boolean setItem();
     void setDamage(byte damage);
-    void step(List<BaseHero> comrades, List<BaseHero> enemies);
+    boolean setItem();
+    void step(List<BaseHero> enemies);
 }

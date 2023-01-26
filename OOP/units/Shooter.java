@@ -6,17 +6,16 @@ import java.util.List;
  * класс для описания стрелков
  */
 public abstract class Shooter extends BaseHero {
-    static final String HEROTYPE = "Стрелок";// все стреляющие персонажи относятся к Стрелкам
     private byte shots;
     private boolean needAnArrow;
-    public Shooter(String heroType, String name, byte attack, byte defence, byte health, byte speed, byte minDamage, byte maxDamage, byte shots){
-        super(heroType, name, attack, defence, health, speed, minDamage, maxDamage);
+    public Shooter(List <BaseHero> comrades, String heroType, Position position, byte attack, byte defence, byte health, byte speed, byte minDamage, byte maxDamage, byte shots){
+        super(comrades, heroType, position, attack, defence, health, speed, minDamage, maxDamage);
         this.shots = shots;
         this.needAnArrow = false;
     }
     @Override
     public String toString(){
-        return super.toString() + ", Выстрелы: " + this.shots;
+        return super.toString() + "\t➶ " + this.shots;
     }
     @Override
     public byte[] getInfo(){
@@ -25,14 +24,10 @@ public abstract class Shooter extends BaseHero {
         return info;       
     }
     @Override
-    public String getHeroType(){
-        return HEROTYPE;
-    }
-    @Override
-    public void step(List<BaseHero> comrades, List<BaseHero> enemies){
+    public void step(List<BaseHero> enemies){
         if (this.getHealth() > 0 && this.shots > 0){
             //Тут будет цикл по enemies и выстрел
-            System.out.printf("Стрелок %s выстрелил \n", this.getHeroName());
+            System.out.printf("%s выстрелил \n", this.getHeroType());
             this.shots -= 1;
             this.needAnArrow = true; // выстрел сделан, нужна стрела
         }

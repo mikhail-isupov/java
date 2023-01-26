@@ -1,4 +1,7 @@
 package units;
+
+import java.util.List;
+
 /**
  * класс для описания снайпера
  */
@@ -11,7 +14,7 @@ public class Sniper extends Shooter {
     static final byte MINDAMAGE = 8;
     static final byte MAXDAMAGE = 10;
     static final byte SHOTS = 32;
-    public Sniper(String name){
-        super(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE, SHOTS);
+    public Sniper(List<BaseHero> comrades, Position position){
+        super(comrades, HEROTYPE, position, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE, SHOTS);
     }
 }

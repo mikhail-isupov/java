@@ -1,4 +1,7 @@
 package units;
+
+import java.util.List;
+
 /**
  * класс для описания разбойника
  */
@@ -11,7 +14,11 @@ public class Bandit extends BaseHero {
     static final byte MINDAMAGE = 2;
     static final byte MAXDAMAGE = 4;
 
-    public Bandit(String name){
-        super(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE);
+    public Bandit(List<BaseHero> comrades, Position position){
+        super(comrades, HEROTYPE, position, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE);
+    }
+    @Override
+    public String toString(){
+        return super.toString() + "\t  ";
     }
 }

@@ -16,16 +16,16 @@ public class Peasant extends BaseHero {
     
     private byte delivery;
 
-    private Peasant(String heroType, String name, byte attack, byte defence, byte health, byte speed, byte damage, byte delivery){
-        super(heroType, name, attack, defence, health, speed, damage);
+    private Peasant(List<BaseHero> comrades, String heroType, Position position, byte attack, byte defence, byte health, byte speed, byte damage, byte delivery){
+        super(comrades, heroType, position, attack, defence, health, speed, damage);
         this.delivery = delivery;
     }
-    public Peasant(String name){
-        this(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, DAMAGE, DELIVERY);
+    public Peasant(List<BaseHero> comrades, Position position){
+        this(comrades, HEROTYPE, position, ATTACK, DEFENCE, HEALTH, SPEED, DAMAGE, DELIVERY);
     }
     @Override
     public String toString(){
-        return super.toString() + ", Доставка: " + this.delivery;
+        return super.toString() + "\t 🚲" + this.delivery;
     }
     @Override
     public byte[] getInfo(){
@@ -34,11 +34,11 @@ public class Peasant extends BaseHero {
         return info;
     }
     @Override
-    public void step(List<BaseHero> comrades, List<BaseHero> enemies){
+    public void step(List<BaseHero> enemies){
         if (this.getHealth() > 0){
-            for (BaseHero hero: comrades){
-                if (hero.getHeroType().equals("Стрелок") && hero.setItem()) {
-                    System.out.printf("Крестьянин %s доставил стрелу стрелку %s \n", this.getHeroName(), hero.getHeroName());
+            for (BaseHero hero: this.getComrades()){
+                if ((hero.getHeroType().equals("Арбалетчик")||hero.getHeroType().equals("Снайпер")) && hero.setItem()) {
+                    System.out.printf("Крестьянин доставил стрелу %s\n", hero.getHeroType());
                     break;
                 }
             }
