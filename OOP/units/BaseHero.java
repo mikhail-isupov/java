@@ -6,11 +6,14 @@ import java.util.List;
  * класс для описания свойств базового персонажа
  */
 public abstract class BaseHero implements GameMethods{
+    private List<BaseHero> comrades;
+    private String heroType;
+    private Position position;
     private byte attack, defence, health, maxHealth, speed, minDamage, maxDamage;
-    private String heroType, name;
-    public BaseHero(String heroType, String name, byte attack, byte defence, byte health, byte speed, byte minDamage, byte maxDamage){
+    public BaseHero(List<BaseHero> comrades,  String heroType, Position position, byte attack, byte defence, byte health, byte speed, byte minDamage, byte maxDamage){
+        this.comrades = comrades;
         this.heroType = heroType;
-        this.name = name;
+        this.position = position;
         this.attack = attack;
         this.defence = defence;
         this.health = health;
@@ -19,32 +22,36 @@ public abstract class BaseHero implements GameMethods{
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
     }
-    public BaseHero(String heroType, String name, byte attack, byte defence, byte health, byte speed, byte damage){
-        this(heroType, name, attack, defence, health, speed, damage, damage);
+    public BaseHero(List<BaseHero> comrades, String heroType, Position position, byte attack, byte defence, byte health, byte speed, byte damage){
+        this(comrades, heroType, position, attack, defence, health, speed, damage, damage);
     }
     @Override
-    public String toString(){
-        String stringHero;
-        if (this.minDamage==this.maxDamage){
-            stringHero = String.format("%s %s, Атака: %d, Защита: %d, Урон: %d, Здоровье: %d, Скорость: %d",this.heroType, this.name, this.attack, this.defence, this.minDamage, this.health, this.speed);
-        } else {
-            stringHero = String.format("%s %s, Атака: %d, Защита: %d, Урон: [%d, %d], Здоровье: %d, Скорость: %d",this.heroType, this.name, this.attack, this.defence, this.minDamage, this.maxDamage, this.health, this.speed);
-        }
-        return stringHero;
-    }  
+    public List<BaseHero> getComrades(){
+        return this.comrades;
+    }
     @Override
-    public byte[] getInfo(){// полная информация о персонаже за исключением имени и типа
-        byte[] info = {attack, defence, health, speed, minDamage, maxDamage, 0}; 
-        // последний элемент зарезервирован для классов-наследников добавляющих свой параметр
-        return info;
+    public Position getPosition(){
+        return this.position;
+    }
+    @Override
+    public void setPosition(Position position){
+        this.position = position;
     }
     @Override
     public String getHeroType(){
         return this.heroType;
     }
     @Override
-    public String getHeroName(){
-        return this.name;
+    public String toString(){
+        String stringHero;
+            stringHero = String.format("%-12s\t⚔ %d\t🛡 %d\t☠ %d\t♥% d\tV %d",this.heroType, this.attack, this.defence, (this.minDamage + this.maxDamage) / 2, this.health, this.speed);
+        return stringHero;
+    }  
+    @Override
+    public byte[] getInfo(){// полная информация о персонаже за исключением типа героя и его положения
+        byte[] info = {attack, defence, health, speed, minDamage, maxDamage, 0}; 
+        // последний элемент зарезервирован для классов-наследников добавляющих свой параметр
+        return info;
     }
     @Override
     public int getHealth(){
@@ -65,7 +72,7 @@ public abstract class BaseHero implements GameMethods{
         return false;
     }
     @Override
-    public void step(List<BaseHero> comrades, List<BaseHero> enemies){
+    public void step(List<BaseHero> enemies){
         
     }
 }

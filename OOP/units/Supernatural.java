@@ -5,15 +5,15 @@ import java.util.List;
  * класс для описания персонажей с магией
  */
 public abstract class Supernatural extends BaseHero {
-    //static final String HEROTYPE = "Волшебник";// Все персонажи с магией относятся к волшебникам
+
     private byte magic;
-    public Supernatural(String heroType, String name, byte attack, byte defence, byte health, byte speed, byte damage, byte magic){
-        super(heroType, name, attack, defence, health, speed, damage);
+    public Supernatural(List<BaseHero> comrades, String heroType, Position position, byte attack, byte defence, byte health, byte speed, byte damage, byte magic){
+        super(comrades, heroType, position, attack, defence, health, speed, damage);
         this.magic = magic;
     }
     @Override
     public String toString(){
-        return super.toString() + ", Магия: " + this.magic;
+        return super.toString() + "\t🧪 " + this.magic;
     }
     @Override
     public byte[] getInfo(){
@@ -26,12 +26,12 @@ public abstract class Supernatural extends BaseHero {
     //    return HEROTYPE;
     //}
     @Override
-    public void step(List<BaseHero> comrades, List<BaseHero> enemies){
+    public void step(List<BaseHero> enemies){
         if (this.getHealth() > 0){
             int worstHealth = 100;
             int heroHealth;
             BaseHero mostDamagedHero = null;
-            for (BaseHero hero: comrades){
+            for (BaseHero hero: this.getComrades()){
                 heroHealth = hero.getHealth();
                 if (hero != this && heroHealth > 0 && heroHealth < worstHealth){// Волшебник не лечит себя и погибших
                     worstHealth = heroHealth;
@@ -40,7 +40,7 @@ public abstract class Supernatural extends BaseHero {
             }
             if (mostDamagedHero != null){// Ежели нашли раненного
                 mostDamagedHero.setDamage(this.getInfo()[5]);//Вычитаем из здоровья урон
-                System.out.printf("%s %s подлечил %s %s \n",this.getHeroType(), this.getHeroName(), mostDamagedHero.getHeroType(), mostDamagedHero.getHeroName());
+                System.out.printf("%s подлечил %s\n",this.getHeroType(), mostDamagedHero.getHeroType());
             }
         }  
     }

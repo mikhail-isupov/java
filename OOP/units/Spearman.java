@@ -1,9 +1,12 @@
 package units;
+
+import java.util.List;
+
 /**
  * класс для описания копейщика
  */
 public class Spearman extends BaseHero {
-    static final String HEROTYPE = "Копейщик";
+    static final String HEROTYPE = "Пикинер";
     static final byte ATTACK = 4;
     static final byte DEFENCE = 5;
     static final byte HEALTH = 10;
@@ -11,7 +14,7 @@ public class Spearman extends BaseHero {
     static final byte MINDAMAGE = 1;
     static final byte MAXDAMAGE = 3;
 
-    public Spearman(String name){
-        super(HEROTYPE, name, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE);
+    public Spearman(List<BaseHero> comrades, Position position){
+        super(comrades, HEROTYPE, position, ATTACK, DEFENCE, HEALTH, SPEED, MINDAMAGE, MAXDAMAGE);
     }
 }
