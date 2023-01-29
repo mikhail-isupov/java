@@ -40,7 +40,7 @@ public abstract class Supernatural extends BaseHero {
             }
             if (mostDamagedHero != null){// Ежели нашли раненного
                 mostDamagedHero.setDamage(this.getInfo()[5]);//Вычитаем из здоровья урон
-                System.out.printf("%s подлечил %s\n",this.getHeroType(), mostDamagedHero.getHeroType());
+                System.out.printf("%s %s подлечил %s %s\n",this.getHeroType(), this.getPosition().toString(), mostDamagedHero.getHeroType(), mostDamagedHero.getPosition().toString());
             }
         }  
     }
