@@ -60,15 +60,18 @@ public class ConsoleView {
     }
     private static String getHeroChar(List<BaseHero> whiteSide, List<BaseHero> darkSide, Position position){
         String str = "| ";
+        String whiteSideColor, darkSideColor;
         for (int i = 0; i < Main.GANG_SIZE; i++) {
+            whiteSideColor = whiteSide.get(i).getHealth() > 0 ? AnsiColors.ANSI_GREEN : AnsiColors.ANSI_RED;
+            darkSideColor = darkSide.get(i).getHealth() > 0 ? AnsiColors.ANSI_BLUE : AnsiColors.ANSI_RED;
             if (darkSide.get(i).getPosition().isEqual(position)) {
-                str = "|" + AnsiColors.ANSI_BLUE + darkSide.get(i).getHeroType().charAt(0) + AnsiColors.ANSI_RESET + "|"
-                        + "\t" + AnsiColors.ANSI_GREEN + whiteSide.get(i).toString() + AnsiColors.ANSI_RESET
-                        + "\t" + AnsiColors.ANSI_BLUE + darkSide.get(i).toString() + AnsiColors.ANSI_RESET;
+                str = "|" + darkSideColor + darkSide.get(i).getHeroType().charAt(0) + AnsiColors.ANSI_RESET + "|"
+                        + "\t" + (whiteSideColor) + whiteSide.get(i).toString() + AnsiColors.ANSI_RESET
+                        + "\t" + (darkSideColor) + darkSide.get(i).toString() + AnsiColors.ANSI_RESET;
             }
 
             if (whiteSide.get(i).getPosition().isEqual(position)){
-                str = "|" + AnsiColors.ANSI_GREEN + whiteSide.get(i).getHeroType().charAt(0) + AnsiColors.ANSI_RESET;
+                str = "|" + whiteSideColor + whiteSide.get(i).getHeroType().charAt(0) + AnsiColors.ANSI_RESET;
             }
         }
         return str;

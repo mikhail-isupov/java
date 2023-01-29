@@ -44,7 +44,7 @@ public abstract class BaseHero implements GameMethods{
     @Override
     public String toString(){
         String stringHero;
-            stringHero = String.format("%-12s\t⚔ %d\t🛡 %d\t☠ %d\t♥% d\tV %d",this.heroType, this.attack, this.defence, (this.minDamage + this.maxDamage) / 2, this.health, this.speed);
+        stringHero = String.format("%-12s\t⚔ %d\t🛡 %d\t☠ %d\t♥% d\tV %d",this.heroType, this.attack, this.defence, (this.minDamage + this.maxDamage) / 2, this.health, this.speed);       
         return stringHero;
     }  
     @Override
@@ -60,8 +60,9 @@ public abstract class BaseHero implements GameMethods{
     @Override
     public void setDamage(byte damage){
         this.health -= damage;
-        if (this.health < 0){
+        if (this.health <= 0){
             this.health = 0;
+            System.out.printf("%s %s погиб.\n", this.getHeroType(), this.position.toString());
         }
         if (this.health > this.maxHealth){
             this.health = this.maxHealth;

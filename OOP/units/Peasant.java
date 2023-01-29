@@ -38,7 +38,7 @@ public class Peasant extends BaseHero {
         if (this.getHealth() > 0){
             for (BaseHero hero: this.getComrades()){
                 if ((hero.getHeroType().equals("Арбалетчик")||hero.getHeroType().equals("Снайпер")) && hero.setItem()) {
-                    System.out.printf("Крестьянин доставил стрелу %s\n", hero.getHeroType());
+                    System.out.printf("Крестьянин %s доставил стрелу %s %s\n", this.getPosition().toString(), hero.getHeroType(), hero.getPosition().toString());
                     break;
                 }
             }
