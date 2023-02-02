@@ -6,7 +6,7 @@ import java.util.List;
  * класс для описания разбойника
  */
 public class Bandit extends BaseHero {
-    static final String HEROTYPE = "Разбойник";
+    public static final String HEROTYPE = "Разбойник";
     static final byte ATTACK = 8;
     static final byte DEFENCE = 3;
     static final byte HEALTH = 10;

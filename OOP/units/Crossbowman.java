@@ -6,7 +6,7 @@ import java.util.List;
  * класс для описания арбалетчика
  */
 public class Crossbowman extends Shooter {
-    static final String HEROTYPE = "Арбалетчик";
+    public static final String HEROTYPE = "Арбалетчик";
     static final byte ATTACK = 6;
     static final byte DEFENCE = 3;
     static final byte HEALTH = 10;
