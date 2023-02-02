@@ -6,7 +6,7 @@ import java.util.List;
  * Класс для описания монаха
  */
 public class Monk extends Supernatural{
-    static final String HEROTYPE = "Монах";
+    public static final String HEROTYPE = "Монах";
     static final byte ATTACK = 12;
     static final byte DEFENCE = 7;
     static final byte HEALTH = 30;

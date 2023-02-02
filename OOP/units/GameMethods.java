@@ -11,4 +11,5 @@ public interface GameMethods {
     void setDamage(byte damage);
     boolean setItem();
     void step(List<BaseHero> enemies);
+    BaseHero findNearestHero(List<BaseHero> heroes);
 }

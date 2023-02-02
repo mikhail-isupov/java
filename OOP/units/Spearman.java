@@ -6,7 +6,7 @@ import java.util.List;
  * класс для описания копейщика
  */
 public class Spearman extends BaseHero {
-    static final String HEROTYPE = "Пикинер";
+    public static final String HEROTYPE = "Пикинер";
     static final byte ATTACK = 4;
     static final byte DEFENCE = 5;
     static final byte HEALTH = 10;

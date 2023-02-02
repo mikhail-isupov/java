@@ -6,7 +6,7 @@ import java.util.List;
  * Класс для описания колдуна
  */
 public class Wisard extends Supernatural{
-    static final String HEROTYPE = "Чародей";
+    public static final String HEROTYPE = "Чародей";
     static final byte ATTACK = 17;
     static final byte DEFENCE = 12;
     static final byte HEALTH = 30;

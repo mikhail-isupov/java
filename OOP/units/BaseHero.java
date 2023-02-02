@@ -1,6 +1,7 @@
 package units;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * класс для описания свойств базового персонажа
@@ -74,6 +75,74 @@ public abstract class BaseHero implements GameMethods{
     }
     @Override
     public void step(List<BaseHero> enemies){
-        
+        if (this.health > 0){
+            BaseHero selectedEnemy = this.findNearestHero(enemies);
+            if (this.health > 0 && selectedEnemy != null){
+                float distance = this.position.getDistance(selectedEnemy.getPosition());
+                if (distance < 2){
+                    byte selectedEnemyDefence = selectedEnemy.getInfo()[1];
+                    byte damage = (this.attack > selectedEnemyDefence) ? this.maxDamage : this.minDamage;
+                    System.out.printf("%s %s атаковал %s %s\n", this.heroType, this.position.toString(), selectedEnemy.getHeroType(), selectedEnemy.getPosition().toString());
+                    selectedEnemy.setDamage(damage);            
+                } else {
+                    int dx = selectedEnemy.getPosition().x - this.position.x;
+                    int dy = selectedEnemy.getPosition().y - this.position.y;
+                    int stepX = (dx != 0) ? Math.round(dx/Math.abs(dx)) : 0;
+                    int stepY = (dy != 0) ? Math.round(dy/Math.abs(dy)) : 0;
+                    boolean isStepCompleted = false;
+                    byte counter = 4;
+                    while (!isStepCompleted && counter > 0){
+                        byte x = this.position.x;
+                        byte y = this.position.y;
+                        if (stepX != 0 && stepY != 0){
+                            switch ((new Random()).nextInt(2)){
+                                case 0: x = (byte)(x + stepX); break;
+                                case 1: y = (byte)(y + stepY); break;
+                            }
+                        } else {
+                            x = (byte)(x + stepX);
+                            y = (byte)(y + stepY);
+                        }
+                        Position newPosition = new Position(x, y);
+                        boolean isFieldBusy = false;
+                        for (BaseHero hero : this.comrades){
+                            if (hero.getPosition().isEqual(newPosition)){
+                                isFieldBusy = true;
+                                break;
+                            }
+                        }
+                        for (BaseHero hero : enemies){
+                            if (isFieldBusy || hero.getPosition().isEqual(newPosition)){
+                                isFieldBusy = true;
+                                break;
+                            }
+                        }
+                        if (isFieldBusy || x < Position.MINPOSITION || x > Position.MAXPOSITION || y < Position.MINPOSITION || y > Position.MAXPOSITION){
+                            int swap = stepX;
+                            stepX = stepY;
+                            stepY = -swap;
+                            counter--;
+                        } else {
+                            this.position = newPosition;
+                            isStepCompleted = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @Override
+    public BaseHero findNearestHero(List<BaseHero> heroes){
+        float minDistance = Position.MAXDISTANCE;
+        float distance;
+        BaseHero selectedHero = null;
+        for (BaseHero hero: heroes){
+            distance = hero.getPosition().getDistance(this.position);
+            if (hero != this && hero.getHealth() > 0 && distance < minDistance){
+                minDistance = distance;
+                selectedHero = hero;
+                }
+            }
+        return selectedHero;
     }
 }

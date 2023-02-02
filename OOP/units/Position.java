@@ -1,7 +1,11 @@
 package units;
-
+/*
+ * Класс для описания позиции героя
+ */
 public class Position {
-    public static final float MAXDISTANCE = 13;
+    public static final byte MAXPOSITION = 10;
+    public static final byte MINPOSITION = 1;
+    public static final float MAXDISTANCE = (float)Math.sqrt(2*(MAXPOSITION - MINPOSITION)*(MAXPOSITION - MINPOSITION));
     public byte x,y;
 
     public Position(byte x, byte y){

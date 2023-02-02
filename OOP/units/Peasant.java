@@ -6,7 +6,7 @@ import java.util.List;
  * класс для описания Крестьянина
  */
 public class Peasant extends BaseHero {
-    static final String HEROTYPE = "Крестьянин";
+    public static final String HEROTYPE = "Крестьянин";
     static final byte ATTACK = 1;
     static final byte DEFENCE = 1;
     static final byte HEALTH = 1;
