@@ -28,7 +28,6 @@ public abstract class Shooter extends BaseHero {
     public void step(List<BaseHero> enemies){
         BaseHero selectedEnemy = this.findNearestHero(enemies);
         if (this.getHealth() > 0 && this.shots > 0 && selectedEnemy != null){
-            System.out.printf("%s %s выстрелил в %s %s \n", this.getHeroType(), this.getPosition().toString(), selectedEnemy.getHeroType(), selectedEnemy.getPosition().toString());
             byte[] heroInfo = this.getInfo();
             byte selectedEnemyDefence = selectedEnemy.getInfo()[1];
             float distance = this.getPosition().getDistance(selectedEnemy.getPosition());
@@ -44,6 +43,7 @@ public abstract class Shooter extends BaseHero {
                     damage -= 1;
                 }
             }
+            System.out.printf("%s %s выстрелил в %s %s\n", this.getHeroType(), this.getPosition().toString(), selectedEnemy.getHeroType(), selectedEnemy.getPosition().toString());
             selectedEnemy.setDamage(damage);
             this.shots -= 1;
             this.needAnArrow = true; // выстрел сделан, нужна стрела      
