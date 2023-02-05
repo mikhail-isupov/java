@@ -20,16 +20,20 @@ public class TeamConstructor {
         int num;
         for (byte y = 1; y <= GANG_SIZE; y++){
             num = rnd.nextInt(heroes.length);
-            if (Bandit.HEROTYPE.equals(heroes[num])) team.add(new Bandit(team, new Position(x, y)));
-            if (Crossbowman.HEROTYPE.equals(heroes[num])) team.add(new Crossbowman(team, new Position(x, y)));
-            if (Monk.HEROTYPE.equals(heroes[num])) team.add(new Monk(team, new Position(x, y)));
-            if (Peasant.HEROTYPE.equals(heroes[num])) team.add(new Peasant(team, new Position(x, y)));
-            if (Sniper.HEROTYPE.equals(heroes[num])) team.add(new Sniper(team, new Position(x, y)));
-            if (Spearman.HEROTYPE.equals(heroes[num])) team.add(new Spearman(team, new Position(x, y)));
-            if (Wisard.HEROTYPE.equals(heroes[num])) team.add(new Wisard(team, new Position(x, y)));           
+            createNewHero(heroes[num], team, new Position(x, y));         
         }
         x *= GANG_SIZE;
         return team;
+    }
+    public static void createNewHero(String heroType, List<BaseHero> team, Position position){
+        if (Bandit.HEROTYPE.equals(heroType)) team.add(new Bandit(team, position));
+        if (Crossbowman.HEROTYPE.equals(heroType)) team.add(new Crossbowman(team, position));
+        if (Monk.HEROTYPE.equals(heroType)) team.add(new Monk(team, position));
+        if (Peasant.HEROTYPE.equals(heroType)) team.add(new Peasant(team, position));
+        if (Sniper.HEROTYPE.equals(heroType)) team.add(new Sniper(team, position));
+        if (Spearman.HEROTYPE.equals(heroType)) team.add(new Spearman(team, position));
+        if (Wisard.HEROTYPE.equals(heroType)) team.add(new Wisard(team, position));
+        
     }
     public static boolean isTeamAlive(List<BaseHero> team){
         boolean isAnybodyHereAlive = false;
@@ -41,15 +45,15 @@ public class TeamConstructor {
         }
         return isAnybodyHereAlive;
     }
-    public static TreeMap<Byte, List<BaseHero>> createBattle(List<BaseHero> team1, List<BaseHero> team2){
-        TreeMap<Byte, List<BaseHero>> battle = new TreeMap<>();
+    public static TreeMap<Byte, List<BaseHero>> rankTheHeroes(List<BaseHero> team1, List<BaseHero> team2){
+        TreeMap<Byte, List<BaseHero>> rangedHeroes = new TreeMap<>();
         for (BaseHero hero : team1){
-            addHeroInBattle(hero, battle);
+            addHeroInBattle(hero, rangedHeroes);
         }
         for (BaseHero hero : team2){
-            addHeroInBattle(hero, battle);
+            addHeroInBattle(hero, rangedHeroes);
         }
-    return battle;
+    return rangedHeroes;
     }
     private static void addHeroInBattle(BaseHero hero, TreeMap<Byte, List<BaseHero>> battle){
         Byte speed = hero.getInfo()[3];

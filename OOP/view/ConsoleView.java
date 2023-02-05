@@ -39,6 +39,7 @@ public class ConsoleView {
             System.out.println((y < TeamConstructor.GANG_SIZE) ? ConsoleView.mid10 : ConsoleView.bott10);
         }
         System.out.println("Press Enter");
+        System.out.println();
     }
 
     private static String formateDiv(String str){
