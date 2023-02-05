@@ -7,9 +7,12 @@ import java.util.List;
 public abstract class Supernatural extends BaseHero {
 
     private byte magic;
+    private boolean isEmpty;
+
     public Supernatural(List<BaseHero> comrades, String heroType, Position position, byte attack, byte defence, byte health, byte speed, byte damage, byte magic){
         super(comrades, heroType, position, attack, defence, health, speed, damage);
         this.magic = magic;
+        this.isEmpty = false;
     }
     @Override
     public String toString(){
@@ -27,21 +30,32 @@ public abstract class Supernatural extends BaseHero {
     //}
     @Override
     public void step(List<BaseHero> enemies){
+        if (this.isEmpty){
+            this.isEmpty = false;
+            System.out.printf("%s %s пропускает ход\n", this.getHeroType(), this.getPosition().toString());
+            return;
+        }
+
         if (this.getHealth() > 0){
             int worstHealth = 100;
             int heroHealth;
             BaseHero mostDamagedHero = null;
             for (BaseHero hero: this.getComrades()){
                 heroHealth = hero.getHealth();
-                if (hero != this && heroHealth > 0 && heroHealth < worstHealth){// Волшебник не лечит себя и погибших
+                if (hero != this && heroHealth < worstHealth){// Волшебник не лечит себя и погибших
                     worstHealth = heroHealth;
                     mostDamagedHero = hero;
                 }
             }
-            if (mostDamagedHero != null){// Ежели нашли раненного
-                mostDamagedHero.setDamage(this.getInfo()[5]);//Вычитаем из здоровья урон
+            if (mostDamagedHero != null && worstHealth > 0){// Ежели нашли раненного
                 System.out.printf("%s %s подлечил %s %s\n",this.getHeroType(), this.getPosition().toString(), mostDamagedHero.getHeroType(), mostDamagedHero.getPosition().toString());
+                mostDamagedHero.setDamage(this.getInfo()[5]);//Вычитаем из здоровья урон      
+            } 
+            if (mostDamagedHero != null && worstHealth == 0){ // Ежели воскрешаем убитого
+                System.out.printf("%s %s воскресил %s %s\n",this.getHeroType(), this.getPosition().toString(), mostDamagedHero.getHeroType(), mostDamagedHero.getPosition().toString());
+                mostDamagedHero.setDamage((byte)(-this.getInfo()[2])); // Волшебник не может дать здоровья больше чем есть у него
+                this.isEmpty = true;
             }
-        }  
+        } 
     }
 }

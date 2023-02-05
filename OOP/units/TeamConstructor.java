@@ -2,6 +2,7 @@ package units;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.TreeMap;
 
 /*
  * Класс для создания и инициализации команд 
@@ -39,6 +40,23 @@ public class TeamConstructor {
             }
         }
         return isAnybodyHereAlive;
+    }
+    public static TreeMap<Byte, List<BaseHero>> createBattle(List<BaseHero> team1, List<BaseHero> team2){
+        TreeMap<Byte, List<BaseHero>> battle = new TreeMap<>();
+        for (BaseHero hero : team1){
+            addHeroInBattle(hero, battle);
+        }
+        for (BaseHero hero : team2){
+            addHeroInBattle(hero, battle);
+        }
+    return battle;
+    }
+    private static void addHeroInBattle(BaseHero hero, TreeMap<Byte, List<BaseHero>> battle){
+        Byte speed = hero.getInfo()[3];
+            if (!battle.containsKey(speed)){
+                battle.put(speed, new ArrayList<BaseHero>());
+            }
+            battle.get(speed).add(hero);
     }
     
 }
