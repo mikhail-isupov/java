@@ -12,15 +12,15 @@ public class Main {
         String[] darkTeamMembers = {Crossbowman.HEROTYPE, Spearman.HEROTYPE, Peasant.HEROTYPE, Wisard.HEROTYPE};
         var whiteSide = TeamConstructor.createTeam(whiteTeamMembers);
         var darkSide = TeamConstructor.createTeam(darkTeamMembers);
-        var battle = TeamConstructor.createBattle(whiteSide, darkSide);
+        var sequenceOfSteps = TeamConstructor.rankTheHeroes(whiteSide, darkSide);
         
         Scanner scanner = new Scanner(System.in);
         
         while (TeamConstructor.isTeamAlive(whiteSide) && TeamConstructor.isTeamAlive(darkSide)){
-            System.out.println();
-            for (var speed: battle.descendingKeySet()){
-                Collections.shuffle(battle.get(speed));
-                for (var hero: battle.get(speed)){
+            
+            for (var speed: sequenceOfSteps.descendingKeySet()){
+                Collections.shuffle(sequenceOfSteps.get(speed));
+                for (var hero: sequenceOfSteps.get(speed)){
                     if (hero.getComrades().equals(whiteSide)) {
                         hero.step(darkSide);
                     } else {
@@ -30,6 +30,8 @@ public class Main {
             }
             ConsoleView.view(whiteSide, darkSide);
             scanner.nextLine();
+            sequenceOfSteps.clear();
+            sequenceOfSteps = TeamConstructor.rankTheHeroes(whiteSide, darkSide);
         }       
     }    
 }

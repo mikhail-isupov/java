@@ -1,5 +1,6 @@
 package units;
 import java.util.List;
+import java.util.Random;
 
 /**
  * класс для описания персонажей с магией
@@ -52,8 +53,13 @@ public abstract class Supernatural extends BaseHero {
                 mostDamagedHero.setDamage(this.getInfo()[5]);//Вычитаем из здоровья урон      
             } 
             if (mostDamagedHero != null && worstHealth == 0){ // Ежели воскрешаем убитого
-                System.out.printf("%s %s воскресил %s %s\n",this.getHeroType(), this.getPosition().toString(), mostDamagedHero.getHeroType(), mostDamagedHero.getPosition().toString());
-                mostDamagedHero.setDamage((byte)(-this.getInfo()[2])); // Волшебник не может дать здоровья больше чем есть у него
+                String deadHeroType = mostDamagedHero.getHeroType();
+                Position deadHeroPosition = mostDamagedHero.getPosition();
+                int revivedHero = (new Random()).nextInt(TeamConstructor.GANG_SIZE);
+                String revivedHeroType = this.getComrades().get(revivedHero).getHeroType();
+                this.getComrades().remove(mostDamagedHero);
+                TeamConstructor.createNewHero(revivedHeroType, this.getComrades(), deadHeroPosition);
+                System.out.printf("%s %s воскресил %s %s\n",this.getHeroType(), this.getPosition().toString(), deadHeroType, deadHeroPosition);
                 this.isEmpty = true;
             }
         } 
