@@ -1,4 +1,6 @@
 package Controller;
+import java.io.IOException;
+
 import DataManager.DataManager;
 import Models.DataStructure;
 import Models.PersonalData;
@@ -12,8 +14,10 @@ public class Controller {
         try {
             PersonalData data = new PersonalData(inputString);
             DataManager.save(data);
-            
-        } catch (Exception e) {
+        } catch (IOException e){
+            UserInterface.message(e.getStackTrace().toString());
+        }
+        catch (Exception e) {
             UserInterface.message(e.getMessage());
         }
         
